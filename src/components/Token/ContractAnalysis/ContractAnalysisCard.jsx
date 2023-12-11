@@ -5,8 +5,8 @@ import { useTranslation } from "react-i18next";
 import ErrorPart from "../../common/ErrorPart";
 
 export function ContractAnalysisCard() {
-  const bscdata = useSelector(state => state.GetBSCdata.data);
-  const bscstatus = useSelector(state => state.GetBSCdata.status);
+  const bscdata = useSelector(state => state.contractAnalysis.data);
+  const bscStatus = useSelector(state => state.contractAnalysis.status);
   const { t } = useTranslation(["token"]);
   const lang = localStorage.getItem("i18nextLng");
 
@@ -51,12 +51,17 @@ export function ContractAnalysisCard() {
 
   return (
     <>
-      {bscstatus === "success" && (
+      {bscStatus === "success" && (
         <div style={{ width: "100%" }}>
-          <div className={`align-self-center ${lang === "ar" ? styles.listGroup_rtl : styles.listGroup_ltr}`}>
+          <h2 className={styles.contractAnalysis_title}>{t("contract_analysis")}</h2>
+          <div
+            className={`align-self-center ${styles.listGroup} ${
+              lang === "ar" ? styles.listGroup_rtl : styles.listGroup_ltr
+            }`}
+          >
             {data.map((item, index) => {
               return (
-                <div key={index} className={`d-flex w-100 justify-content-between text-start ${styles.listItem}`}>
+                <div key={`${item.name}${index}`} className={`${styles.listItem}`}>
                   <p className={`${styles.indicatorName} align-items-center d-flex h-100`}>{item.name}:</p>
                   {item.value === true ? (
                     <span className={`${styles.indicatorStatus} ${styles.detected}`}>{t("token:detected")}</span>
@@ -70,22 +75,23 @@ export function ContractAnalysisCard() {
         </div>
       )}
 
-      {bscstatus === "loading" && (
+      {bscStatus === "loading" && (
         <div style={{ width: "100%" }}>
-          <h5 style={{ fontFamily: "SF Pro Display Medium" }} className={`text-start ${styles.contractAddress}`}>
-            {t("token:contract_address")}
-          </h5>
-          <div className={`list-group align-self-center border-0  ${styles.listGroup} `}>
+          <h2 className={styles.contractAnalysis_title}>{t("contract_analysis")}</h2>
+          <div
+            className={`align-self-center ${styles.listGroup} ${
+              lang === "ar" ? styles.listGroup_rtl : styles.listGroup_ltr
+            }`}
+          >
             {data.map((item, index) => {
               return (
-                <div className="list-group-item rounded-0" key={index}>
-                  <div className={` d-flex w-100 justify-content-between text-start ${styles.listitem}`}>
-                    <div className="align-items-center d-flex h-100">
-                      <Placeholder styling={{ width: "100px", height: "20px" }} />{" "}
+                <div className={styles.listItem} key={index} style={{ height: 35 }}>
+                  <div className={`d-flex w-100 justify-content-between text-start ${styles.listitem}`}>
+                    <div className="align-items-center d-flex">
+                      <Placeholder styling={{ width: "100px", height: "8px", minHeight: 8 }} />
                     </div>
-                    <div className="align-items-center d-flex h-100 ">
-                      {" "}
-                      <Placeholder styling={{ width: "50px", height: "20px" }} />{" "}
+                    <div className="align-items-center d-flex">
+                      <Placeholder styling={{ width: "50px", height: "8px", minHeight: 8 }} />
                     </div>
                   </div>
                 </div>
@@ -95,7 +101,7 @@ export function ContractAnalysisCard() {
         </div>
       )}
 
-      {bscstatus === "failed" && <ErrorPart message="Failed to get data from server" />}
+      {bscStatus === "failed" && <ErrorPart message="Failed to get data from server" />}
     </>
   );
 }

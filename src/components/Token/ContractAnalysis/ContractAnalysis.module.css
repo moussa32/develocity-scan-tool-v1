@@ -1,11 +1,20 @@
 .listGroup_rtl,
 .listGroup_ltr {
   border: 1px #eff2f5 solid;
-  padding: 5px 20px;
+  padding: 5px 10px;
+}
+
+.contractAnalysis_title {
+  font-family: "SF Pro Display Medium";
+  font-size: 16px;
+  color: #25292c;
+  margin-bottom: 10px;
 }
 
 .listItem {
-  padding: 8px 0;
+  display: flex;
+  justify-content: space-between;
+  padding: 6px 10px 8px 10px;
 }
 
 .listItem:not(:last-child) {
@@ -39,4 +48,11 @@
 .notdetected {
   color: #16c784;
   background-color: rgba(22, 199, 132, 0.2) !important;
+}
+
+@media screen and (min-width: 1200px) {
+  .listGroup {
+    width: 285px;
+    height: 255px;
+  }
 }

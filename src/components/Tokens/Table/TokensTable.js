@@ -12,6 +12,7 @@ import ru_RU from "antd/es/locale/ru_RU";
 import styles from "./TokenTable.module.css";
 import "../../Token/WalletsTable/WalletsTable.css";
 import { useCallback } from "react";
+import { getNetworkDetails } from "../../../util/tokenSupportedNetworks";
 
 const TableFooter = ({ renderPerPage = 0, maxCount = 0 }) => {
   return (
@@ -181,17 +182,17 @@ const TokensTable = ({ tokenList, isVerifyied }) => {
     {
       title: "Network",
       width: 85,
-      dataIndex: "contractInfo",
-      render: (value, record, index) => (
-        <div className={styles.networkCell}>
-          <img
-            src={require("../../../assets/images/BSC.png")}
-            alt={record.contractInfo.token}
-            style={{ width: "16px", height: "16px" }}
-          />
-          <span>BSC</span>
-        </div>
-      ),
+      dataIndex: "network",
+      render: (network, record, index) => {
+        const networkDetails = getNetworkDetails(network);
+
+        return (
+          <div className={styles.networkCell}>
+            <img src={networkDetails.icon} alt={networkDetails.name} style={{ width: "16px", height: "16px" }} />
+            <span>{networkDetails.shortName}</span>
+          </div>
+        );
+      },
     },
     {
       title: "Full Report",

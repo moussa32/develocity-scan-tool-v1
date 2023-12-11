@@ -1,9 +1,9 @@
 import { useTranslation } from "react-i18next";
 import TokenTable from "../TokenTable";
 
-const LiquidtyTable = ({ bSCTrasaction }) => {
+const LiquidtyTable = ({ transaction }) => {
   const { t } = useTranslation(["token"]);
-  const bSCTrasactionData = [];
+  const transactionData = [];
 
   const columns = [
     {
@@ -46,24 +46,23 @@ const LiquidtyTable = ({ bSCTrasaction }) => {
     },
   ];
 
-  if (bSCTrasaction && bSCTrasaction.transactions) {
-    for (let i = 0; i < bSCTrasaction.transactions.length; i++) {
+  if (transaction && transaction.transactions) {
+    for (let i = 0; i < transaction.transactions.length; i++) {
       let id = i + 1;
       let fromAddress =
-        bSCTrasaction.transactions[i].from.substr(0, 4) + "..." + bSCTrasaction.transactions[i].from.substr(-4);
-      let toAddress =
-        bSCTrasaction.transactions[i].to.substr(0, 4) + "..." + bSCTrasaction.transactions[i].to.substr(-4);
-      let amount = Number(bSCTrasaction.transactions[i].value).toFixed(5);
-      let tokenSymbol = bSCTrasaction.transactions[i].tokenSymbol;
-      let hash = bSCTrasaction.transactions[i].hash;
-      // let hash = bSCTrasaction.transactions[i].hash.substr(0, 4) + '...' + bSCTrasaction.transactions[i].hash.substr(-4)
-      bSCTrasactionData.push({ id, fromAddress, toAddress, amount, tokenSymbol, hash });
+        transaction.transactions[i].from.substr(0, 4) + "..." + transaction.transactions[i].from.substr(-4);
+      let toAddress = transaction.transactions[i].to.substr(0, 4) + "..." + transaction.transactions[i].to.substr(-4);
+      let amount = Number(transaction.transactions[i].value).toFixed(5);
+      let tokenSymbol = transaction.transactions[i].tokenSymbol;
+      let hash = transaction.transactions[i].hash;
+      // let hash = transaction.transactions[i].hash.substr(0, 4) + '...' + transaction.transactions[i].hash.substr(-4)
+      transactionData.push({ id, fromAddress, toAddress, amount, tokenSymbol, hash });
     }
   }
 
   return (
     <>
-      <TokenTable columns={columns} data={bSCTrasactionData} />
+      <TokenTable columns={columns} data={transactionData} />
     </>
   );
 };

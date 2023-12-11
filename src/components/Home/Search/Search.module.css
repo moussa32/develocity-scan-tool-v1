@@ -72,59 +72,10 @@
   left: 5px;
 }
 
-.searchNote2 {
-  display: flex;
-  align-items: center;
-  margin-top: 7px;
-}
-.note {
-  font-size: 10px;
-  color: #9f4ae8;
-  text-transform: uppercase;
-  width: 60px;
-  height: 20px;
-  background-color: rgba(159, 74, 232, 0.15);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-right: 5px;
-  font-family: "SF Pro Display Medium";
-}
-.note2 {
-  font-size: 12px;
-  font-weight: 400;
-  color: #333;
-  margin-right: 5px;
-  display: flex;
-  font-family: "SF Pro Display Medium";
-  text-transform: capitalize;
-}
-
 .searchInput::placeholder {
   color: #888;
 }
-.bitcoin_ltr {
-  width: 18px;
-  height: 18px;
-  background-color: #333;
-  display: flex;
-  color: #fff;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  margin-right: 5px;
-}
-.bitcoin_rtl {
-  width: 18px;
-  height: 18px;
-  background-color: #333;
-  display: flex;
-  color: #fff;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  margin-left: 5px;
-}
+
 .searchBlock {
   background-color: #fff;
   border: 1px solid;

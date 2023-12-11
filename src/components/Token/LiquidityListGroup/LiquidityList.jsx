@@ -5,27 +5,27 @@ import styles from "./LiquidityList.module.css";
 import { useMemo } from "react";
 
 export function LiquidityList() {
-  const bscLiquidityScan = useSelector(state => state.bscLiquidityScan.bscLiquidity);
-  const statusLiquidity = useSelector(state => state.bscLiquidityScan.loading);
+  const liquidityScan = useSelector(state => state.liquidityScan.liquidity);
+  const statusLiquidity = useSelector(state => state.liquidityScan.loading);
   const { t } = useTranslation(["token", "common"]);
 
-  // const bscLiquiditydata=bscLiquidityScan?.result
+  // const liquiditydata=liquidityScan?.result
   const data = useMemo(
     () => [
       {
         name: t("token:burned_liquidity"),
-        value: bscLiquidityScan ? Number(bscLiquidityScan.burnLiquidityPer).toFixed(2) : null,
+        value: liquidityScan ? Number(liquidityScan.burnLiquidityPer).toFixed(2) : null,
       },
       {
         name: t("token:added_liquidity"),
-        value: bscLiquidityScan ? Number(bscLiquidityScan.addLiquidityPer).toFixed(2) : null,
+        value: liquidityScan ? Number(liquidityScan.addLiquidityPer).toFixed(2) : null,
       },
       {
         name: t("token:removed_liquidity"),
-        value: bscLiquidityScan ? Number(bscLiquidityScan.removeLiquidityPer).toFixed(2) : null,
+        value: liquidityScan ? Number(liquidityScan.removeLiquidityPer).toFixed(2) : null,
       },
     ],
-    [bscLiquidityScan]
+    [liquidityScan]
   );
 
   if (statusLiquidity === false) return "";
@@ -40,7 +40,7 @@ export function LiquidityList() {
           <ListGroup listdata={data} title={t("token:liquidity")} info={t("token:infoDescription.liquidityInfo")} />
         </div>
       )}
-      {/* <ListGroup listdata={bscLiquidityScan} title="Liquidity" /> */}
+      {/* <ListGroup listdata={liquidityScan} title="Liquidity" /> */}
     </>
   );
 }

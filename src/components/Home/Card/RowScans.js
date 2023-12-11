@@ -1,9 +1,24 @@
+import { useState } from "react";
 import styles from "./RowScans.module.css";
 import { Link } from "react-router-dom";
 import VerificationIcon from "../../../assets/images/verification.png";
 
 // import { useTranslation } from 'react-i18next';
-const RowScans = ({ number, image, nametoken, score, scam, sponsored, contract, displayValue, isVerifyed, price }) => {
+const RowScans = ({
+  number,
+  image,
+  nametoken,
+  score,
+  scam,
+  sponsored,
+  contract,
+  displayValue,
+  isVerifyed,
+  price,
+  network,
+  activeNetwork,
+  handleNetwork,
+}) => {
   // const calculateTimeAgo = () => {
   //   let date1, date2, total_seconds, total_minutes, total_hours, days_difference, month_difference;
   //   if (displayValue === "Time Ago") {
@@ -30,10 +45,16 @@ const RowScans = ({ number, image, nametoken, score, scam, sponsored, contract, 
   //   }
   // };
 
+  const handleClickOnNetwork = (event, selectedNetwork) => {
+    event.stopPropagation();
+    event.preventDefault();
+    handleNetwork(selectedNetwork);
+  };
+
   const lang = localStorage.getItem("i18nextLng");
   return (
-    <Link className={`text-decoration-none row ${styles.container_row}`} to={`/token/${contract}`}>
-      <div className={`col-9 ${styles.header}`}>
+    <Link className={`text-decoration-none row ${styles.container_row}`} to={`/token/${network.shortName}/${contract}`}>
+      <div className={`col-8 ${styles.header}`}>
         <h3 className={lang === "ar" ? styles.header_no_right : styles.header_no_left}>{number}</h3>
         <div className={styles.container_image}>
           {/* {sponsored && <div className={styles.container_sponsored}>
@@ -51,15 +72,27 @@ const RowScans = ({ number, image, nametoken, score, scam, sponsored, contract, 
           <h3 className={styles.header_token}>
             {nametoken.length > 36 ? nametoken.substring(0, 36) + "..." : nametoken}
           </h3>
+
           {isVerifyed && (
             <img src={VerificationIcon} className={styles.icon_token_left} alt="Verified" title="Verified" />
           )}
         </div>
       </div>
 
+      <div className="col-2">
+        <div
+          className={`${styles.token_network_wrapper} ${
+            activeNetwork === network?.id && styles.active_token_network_wrapper
+          }`}
+          onClick={event => handleClickOnNetwork(event, network)}
+        >
+          <img className={styles.token_network_logo} src={network?.icon} alt={network?.name} title={network?.name} />
+        </div>
+      </div>
+
       {/* {scam===0 && <span className="isScam " style={{height:'18px', lineHeight:'18px', paddingTop:'0px'}}>Scam</span>} */}
       {/* {score? <span className="isScam">Scam</span>:<span className="isNotScam">Scam</span>} */}
-      <div className={`col-3 ${styles.tokenValue}`}>
+      <div className={`col-2 ${styles.tokenValue}`}>
         <h3 className={styles.tokenScans}>
           {displayValue}
           {/* {displayValue === "Time Ago" && calculateTimeAgo()} */}

@@ -1,39 +1,36 @@
 import { configureStore } from "@reduxjs/toolkit";
-import contractAddressSlice from "./contractAddressSlice";
 import SearchReducer from "./FetchSearchData";
-import GetBSCdataReducer from "./FetchBSCData";
-import GettokeninfodataReducer from "./FetchTokenInfo";
-import GetBuySellBSCdataReducer from "./FetchBuySellBSC";
+import contractAnalysisReducer from "./contractAnalysisSlice";
+import contractInfoDetailsReducer from "./contractInfoDetailsSlice";
+import contractTaxSliceReducer from "./contractTaxSlice";
 import GetListNewsdataReducer from "./FetchListNews";
 import GetAdvertismentodataReducer from "./FetchAdvertisment";
 import ScoreReducer from "./FetchTrustScoreData";
 import DistReducer from "./FetchDistributionData";
-import GetlockedLiquiditydataReducer from "./FetchlockedLiquidity";
+import lockedLiquidityReducer from "./contractlockedLiquidity";
 import tokenOwnerSlice from "./tokenOwnerSlice";
-import topWalletSlice from "./topWalletSlice";
-import bscLiquidityScanSlice from "./bscLiquidityScanSlice";
-import bSCTrasactionSlice from "./bSCTrasactionSlice";
+import contractTopTenWallets from "./contractTopTenWalletsSlice";
+import liquidityScanSlice from "./liquidityScanSlice";
+import transactionSlice from "./transactionSlice";
 import tokenListSlice from "./tokenListSlice";
 import GetIPReducer from "./FetchIPAddress";
-import isPageLoaded from "./isPageLoaded";
+
 export const store = configureStore({
   reducer: {
-    contractAddress: contractAddressSlice,
     Search: SearchReducer,
-    GetBSCdata: GetBSCdataReducer,
-    Gettokeninfodata: GettokeninfodataReducer,
-    GetBuySellBSCdata: GetBuySellBSCdataReducer,
+    contractTopTenWallets: contractTopTenWallets,
+    contractInfoDetails: contractInfoDetailsReducer,
+    contractAnalysis: contractAnalysisReducer,
+    contractTax: contractTaxSliceReducer,
     Score: ScoreReducer,
     Dist: DistReducer,
     tokenOwner: tokenOwnerSlice,
-    topWallet: topWalletSlice,
-    bscLiquidityScan: bscLiquidityScanSlice,
-    bSCTrasaction: bSCTrasactionSlice,
+    liquidityScan: liquidityScanSlice,
+    transaction: transactionSlice,
     tokenList: tokenListSlice,
     GetListNewsdata: GetListNewsdataReducer,
     GetAdvertismentodata: GetAdvertismentodataReducer,
     GetIPAddress: GetIPReducer,
-    GetlockedLiquiditydata: GetlockedLiquiditydataReducer,
-    isPageLoaded: isPageLoaded,
+    lockedLiquidity: lockedLiquidityReducer,
   },
 });

@@ -5,7 +5,6 @@ import { IoCopy } from "react-icons/io5";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import { Modal } from "./Modal/Modal";
-// import ModalForm from "../ModalForm/ModalForm";
 import { useTranslation } from "react-i18next";
 import { IconContainer } from "./IconsContainer/IconContainer";
 import VerificationIcon from "../../../assets/images/verification.png";
@@ -14,13 +13,30 @@ import icon from "../../../assets/images/popup.png";
 import SubmitToken from "./Modal/SubmitToken";
 import { convertFromScientificNotation } from "../../../util/scientificNotation";
 import SpacialNumber from "../../common/SpacialNumber";
+import BSCLogo from "../../../assets/images/BSC.png";
+import { getNetworkDetails } from "../../../util/tokenSupportedNetworks";
 
 function formatNumber(val) {
   return Number(val).toLocaleString("en-US");
 }
 
 function formatBigNumbers(number) {
-  const suffixes = ["", "Thousand", "Million", "Billion", "Trillion", "Quadrillion", "Quintillion","Sextillion","Septillion","Octillion","Nonillion","Decillion","Undecillion","Duodecillion"];
+  const suffixes = [
+    "",
+    "Thousand",
+    "Million",
+    "Billion",
+    "Trillion",
+    "Quadrillion",
+    "Quintillion",
+    "Sextillion",
+    "Septillion",
+    "Octillion",
+    "Nonillion",
+    "Decillion",
+    "Undecillion",
+    "Duodecillion",
+  ];
   const suffixIndex = Math.floor(Math.log10(Number(number.replace(/,/g, ""))) / 3);
   const suffix = suffixes[suffixIndex];
 
@@ -32,11 +48,11 @@ function formatBigNumbers(number) {
 
 export function LeftBarToken() {
   const { contractAddress } = useParams();
-  const tokenData = useSelector(state => state.Gettokeninfodata.data);
-  const tokenStatus = useSelector(state => state.Gettokeninfodata.status);
+  const tokenData = useSelector(state => state.contractInfoDetails.data);
+  const tokenStatus = useSelector(state => state.contractInfoDetails.status);
   const score = useSelector(state => state.Score.data);
-  const bscdata = useSelector(state => state.GetBSCdata.data);
-  const bscstatus = useSelector(state => state.GetBSCdata.status);
+  const bscdata = useSelector(state => state.contractAnalysis.data);
+  const bscstatus = useSelector(state => state.contractAnalysis.status);
   const [copiedAddress, setCopyAddress] = useState("Copy Address");
   const [showModal, setShowModal] = useState(false);
 
@@ -76,7 +92,6 @@ export function LeftBarToken() {
 
   return (
     <section className={styles.tokenInfoHeader}>
-      {/* <ModalForm show={showModal} close={() => setShowModal(false)} /> */}
       <SubmitToken showModal={showModal} handleClose={() => setShowModal(false)} />
       {tokenInfoData.contractInfo.logo ? (
         <img className={styles.tokenImg} src={tokenInfoData.contractInfo.logo} alt={tokenInfoData.contractInfo} />
@@ -186,6 +201,19 @@ export function LeftBarToken() {
                 />
               </>
             )}
+            {tokenInfoData.networks &&
+              tokenInfoData.networks.length > 0 &&
+              tokenInfoData.networks.map(network => (
+                <div className={styles.network}>
+                  <img
+                    className={styles.networkLogo}
+                    src={getNetworkDetails(network).icon}
+                    alt={getNetworkDetails(network).name}
+                    title={getNetworkDetails(network).name}
+                  />
+                  <span className={styles.networkName}>{getNetworkDetails(network).shortName}</span>
+                </div>
+              ))}
           </div>
         </div>
         <div className={`d-flex justify-content-between flex-wrap mt-4 mb-4 ${styles.percent}`}>

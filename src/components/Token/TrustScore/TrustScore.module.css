@@ -1,6 +1,9 @@
+.trustScore {
+  height: 100%;
+  background-color: #25292c;
+}
 .trustScoreBlock_rtl {
   direction: rtl;
-  background-color: #25292c;
   padding: 8px 10px 24px;
 }
 .trustScoreBlock_ltr {
@@ -10,11 +13,11 @@
 }
 .blockTitle {
   font-size: 16px;
-  font-weight: 400px;
   color: #fff;
   text-transform: capitalize;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
-    "Droid Sans", "Helvetica Neue", sans-serif;
+  font-family: "SF Pro Display";
+  font-weight: 500;
+  font-style: normal;
 }
 .chart {
   width: 100%;

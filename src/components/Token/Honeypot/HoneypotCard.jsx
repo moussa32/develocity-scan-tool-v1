@@ -4,20 +4,20 @@ import { useTranslation } from "react-i18next";
 import { Placeholder } from "../../common/Placeholder/Placeholder";
 
 export function HoneypotCard() {
-  const bscdata = useSelector(state => state.GetBuySellBSCdata.data);
-  const bscdata_status = useSelector(state => state.GetBuySellBSCdata.status);
+  const contractTax = useSelector(state => state.contractTax.data);
+  const contractTaxStatus = useSelector(state => state.contractTax.status);
   const { t } = useTranslation(["token"]);
 
-  const newhoney = bscdata.result;
+  const newHoney = contractTax.result;
 
   return (
     <div className={styles.cardContainer}>
-      {(bscdata_status === "success" || bscdata_status === "loading") && (
+      {(contractTaxStatus === "success" || contractTaxStatus === "loading") && (
         <h2 className={styles.cardHeader}>{t("token:honeypot")}</h2>
       )}
-      {bscdata_status === "success" && (
+      {contractTaxStatus === "success" && (
         <>
-          {newhoney && newhoney.honeypotTest === "PASS" ? (
+          {newHoney && newHoney.honeypotTest === "PASS" ? (
             <div className={`${styles.card} ${styles.cardGreen}`}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -56,11 +56,9 @@ export function HoneypotCard() {
           )}
         </>
       )}
-      {bscdata_status === "loading" && (
-        <div className={`${styles.loader}`}>
-          <div className={styles.loaderCard}>
-            <Placeholder styling={{ width: "100%", height: "60px" }} />
-          </div>
+      {contractTaxStatus === "loading" && (
+        <div className={styles.loader}>
+          <Placeholder styling={{ width: "100%", height: "104px" }} />
         </div>
       )}
     </div>

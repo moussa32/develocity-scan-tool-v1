@@ -202,6 +202,26 @@
   transition: 0.5s;
 }
 
+.network {
+  display: flex;
+  align-items: center;
+  background-color: #e8eaec;
+  border-radius: 2px;
+  padding: 4px 5px;
+  gap: 4px;
+}
+
+.networkLogo {
+  width: 13.11px;
+  height: 13.11px;
+}
+
+.networkName {
+  font-size: 9px;
+  font-family: "SF Pro Display Regular";
+  color: #888888;
+}
+
 @media only screen and (max-width: 991px) {
   .arrowBtn_rtl,
   .arrowBtn_ltr {

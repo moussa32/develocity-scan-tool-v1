@@ -2,17 +2,20 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { FaCircle } from "react-icons/fa";
-import { fetchResult } from "../../../store/FetchSearchData";
+import { fetchResult, resetSearch } from "../../../store/FetchSearchData";
 import { useTranslation } from "react-i18next";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import styles from "./Search.module.css";
 import ResultDropdown from "./ResultDropdown";
 import useDebounce from "../../../hooks/useDebounce";
-import { BiUpsideDown , BiBitcoin} from "react-icons/bi";
+import { BiUpsideDown } from "react-icons/bi";
+import { getNetworkDetails } from "../../../util/tokenSupportedNetworks";
+import NetworkSupported from "./NetworkSupported";
 
-const notify = message =>
-  toast.error(message, {
+const notify = (type, message) =>
+  toast[type](message, {
+    toastId: message,
     position: "top-center",
     autoClose: 5000,
     hideProgressBar: false,
@@ -67,12 +70,14 @@ const MySearch = () => {
   //Update error flag to be only show when server return error
   useEffect(() => {
     setError(null);
-    if (searchCode >= 400) {
+    if (searchCode === 404 && debouncedValue.startsWith("0x")) {
+      notify("success", "This contract address is not registered yet start scan");
+    } else if (searchCode >= 400) {
       setError(search?.data?.payload?.responseMessage);
     } else {
       setError(null);
     }
-  }, [searchCode]);
+  }, [searchCode, debouncedValue]);
 
   const handleSearch = event => {
     const { value } = event.target;
@@ -91,7 +96,7 @@ const MySearch = () => {
           return userQuery;
         });
       } else {
-        notify("Contract address or token name must be written correctly");
+        notify("error", "Contract address or token name must be written correctly");
       }
     } else {
       setError(null);
@@ -102,6 +107,7 @@ const MySearch = () => {
 
   const searchContractAddress = () => {
     if (!isDisabled) {
+      dispatch(resetSearch());
       navigate(`/token/${query}`);
     }
   };
@@ -145,6 +151,7 @@ const MySearch = () => {
                   symbol={result.contractInfo.symbol}
                   contractScan={result.contractScan}
                   isScam={result.isNotListed}
+                  network={getNetworkDetails(result.network)}
                 />
               ))}
           </div>
@@ -156,13 +163,8 @@ const MySearch = () => {
           </div>
         )}
       </div>
-      <div className={styles.searchNote2}>
-        <span className={styles.note}>{t("common:sponsered")}</span>
-        <a className={styles.note2} href="https://develocity.finance">
-          <img src="../../logo.png" className={direction === "rtl" ? styles.bitcoin_rtl : styles.bitcoin_ltr} />
-          {t("common:invest")}
-        </a>
-      </div>
+
+      <NetworkSupported />
       {/* className= {(searchResults.status === "failed")? styles.searchNotFound:""} */}
     </>
   );

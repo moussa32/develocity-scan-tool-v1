@@ -12,7 +12,7 @@
   "see_more": "see more",
   "see_how_it_works": "PRE-SALE IS LIVE!",
   "log_in": "Log in",
-  "create_account": "",
+  "create_account": "Create Account",
   "advertise": "advertise",
   "no internet connection": "No internet connection",
   "You do not have access to it": "You do not have access to it",
@@ -139,8 +139,9 @@
   "reset": "reset",
 
   "enter_token": "Enter the token name or address then click scan",
-  "sponsered": "sponsered",
+  "sponsored": "sponsored",
   "invest": "Start to invest in Develocity now.",
   "welcoming_notification": "The Content shared on this website is for technical purposes only and, thus, should not be considered financial advice. Trading/Investing is risky, Cryptocurrencies are risky. You alone assume the sole responsibility of evaluating the merits and risks associated with using any information or other Content on the Site before making any decisions based on such information or other Content",
-  "tokens": "Tokens"
+  "tokens": "Tokens",
+  "supports": "supports"
 }

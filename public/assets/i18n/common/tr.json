@@ -116,8 +116,9 @@
   "reset": "sıfırlamak",
 
   "enter_token": "Token adını veya adresini girin ve ardından tara'yı tıklayın",
-  "sponsered": "sponsorlu",
+  "sponsored": "sponsorlu",
   "invest": "Develocity'ye şimdi yatırım yapmaya başlayın.",
   "welcoming_notification": "Bu web sitesinde paylaşılan içerik sadece teknik amaçlıdır, bu nedenle finansal tavsiye olarak değerlendirilmemelidir. Ticaret / yatırım risklidir, kripto para birimleri de  risklidir. Bu tür bilgilere veya başka herhangi bir içeriğe dayalı herhangi bir karar vermeden önce sitedeki herhangi bir bilginin veya diğer içeriğin kullanımıyla ilişkili avantaj ve risklerin değerlendirilmesinden yalnızca siz sorumlusunuz",
-  "tokens": "Jetonlar"
+  "tokens": "Jetonlar",
+  "supports": "supports"
 }

@@ -6,7 +6,7 @@ import { useTranslation } from "react-i18next";
 import { Link, useLocation } from "react-router-dom";
 
 const BreadCrumbBar = () => {
-  const tokenData = useSelector(state => state.Gettokeninfodata.data);
+  const tokenData = useSelector(state => state.contractInfoDetails.data);
   const { t } = useTranslation(["token"]);
   const lang = localStorage.getItem("i18nextLng");
 

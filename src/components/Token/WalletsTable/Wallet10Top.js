@@ -6,29 +6,29 @@ import { useParams } from "react-router-dom";
 import TokenTable from "../TokenTable";
 import "./WalletsTable.css";
 
-const Wallet10Top = ({ topWalletData }) => {
+const Wallet10Top = ({ contractTopTenWalletsData }) => {
   const [walletInfo, setWalletInfo] = useState([]);
   const { t } = useTranslation(["token"]);
   const { contractAddress } = useParams();
 
   useEffect(() => {
-    if (topWalletData && topWalletData.topTenHolder) {
+    if (contractTopTenWalletsData && contractTopTenWalletsData.topTenHolder) {
       const wallet = [];
-      for (let i = 0; i < topWalletData.topTenHolder.length; i++) {
+      for (let i = 0; i < contractTopTenWalletsData.topTenHolder.length; i++) {
         let id = i + 1;
-        let walletaddress = topWalletData.topTenHolder[i].TokenHolderAddress;
+        let walletaddress = contractTopTenWalletsData.topTenHolder[i].TokenHolderAddress;
         let address =
-          topWalletData.topTenHolder[i].TokenHolderAddress.substr(0, 8) +
+          contractTopTenWalletsData.topTenHolder[i].TokenHolderAddress.substr(0, 8) +
           "..." +
-          topWalletData.topTenHolder[i].TokenHolderAddress.substr(-6);
+          contractTopTenWalletsData.topTenHolder[i].TokenHolderAddress.substr(-6);
         let nameTag = "N/A";
-        let balance = Number(topWalletData.topTenHolder[i].TokenHolderQuantity).toLocaleString("en-US");
-        let percentage = `${Number(topWalletData.topTenHolder[i].percentage).toFixed(2)}%`;
+        let balance = Number(contractTopTenWalletsData.topTenHolder[i].TokenHolderQuantity).toLocaleString("en-US");
+        let percentage = `${Number(contractTopTenWalletsData.topTenHolder[i].percentage).toFixed(2)}%`;
         wallet.push({ id, walletaddress, address, nameTag, balance, percentage });
       }
       setWalletInfo(wallet);
     }
-  }, [topWalletData]);
+  }, [contractTopTenWalletsData]);
 
   const columns = [
     {

@@ -1,0 +1,144 @@
+.modalContent {
+  border-radius: 2px;
+  padding: 100px 15px 30px 15px;
+  height: 745px;
+}
+
+.modalLogo {
+  width: 51.06px;
+  height: 50.76px;
+  display: block;
+  margin: 0 auto;
+}
+
+.modalSubTitle {
+  font-size: 12px;
+  font-family: "SF Pro Display Semibold";
+  color: #9f4ae8;
+  text-transform: uppercase;
+  margin-top: 22px;
+}
+
+.modalTitle {
+  font-size: 24px;
+  font-family: "SF Pro Display Bold";
+  margin-top: 39.2px;
+  margin-bottom: 30px;
+}
+
+.modalContentContainer {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  max-width: 500px;
+  margin: 0 auto;
+  min-height: 449px;
+  height: 100%;
+}
+
+.loginForm {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 23px;
+}
+
+.loginFormInput {
+  font-family: "SF Pro Display Regular";
+  font-size: 14px;
+  border: 1px rgba(136, 136, 136, 0.3) solid;
+  width: 100%;
+  border-radius: 2px;
+  padding: 22px 20px;
+}
+
+.loginFormInput:not(:first-child) {
+  margin-top: 12px;
+}
+
+.formTextButton {
+  color: #9f4ae8;
+  font-family: "SF Pro Display Regular";
+  font-size: 14px;
+  width: fit-content;
+  padding: 0;
+}
+
+.formTextButton:hover {
+  color: #000 !important;
+}
+
+.forgotPassword_ltr {
+  margin-left: auto;
+}
+
+.forgotPassword_rtl {
+  margin-right: auto;
+}
+
+.modalFooter {
+  margin-top: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.loginButton {
+  background-color: #9f4ae8;
+  font-family: "SF Pro Display Regular";
+  font-size: 14px;
+  border-radius: 2px;
+  box-shadow: none;
+  color: white;
+  border-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 42px;
+  max-width: 180px;
+  width: 100%;
+}
+
+.loginButton:hover {
+  color: #000 !important;
+  background-color: #fff;
+  border: 1px #9f4ae8 solid !important;
+}
+
+.closeButton {
+  all: unset;
+  background-color: #e8eaec;
+  width: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "SF Pro Display Medium";
+  color: #888888;
+  font-size: 12px;
+  padding: 5px 6px;
+  border-radius: 2px;
+  gap: 6px;
+  height: 24px;
+  box-sizing: border-box;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+
+@media screen and (min-width: 576px) {
+  .modalContent {
+    padding: 100px 30px 30px 30px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .closeButton {
+    right: 0;
+    top: -30px;
+  }
+  .customDialog {
+    max-width: 660px !important;
+    width: 100% !important;
+  }
+}

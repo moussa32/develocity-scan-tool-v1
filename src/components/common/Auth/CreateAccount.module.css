@@ -1,0 +1,125 @@
+.modalContent {
+  border-radius: 2px;
+  padding: 50px 15px 30px 15px;
+}
+
+.modalContentContainer {
+  max-width: 500px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
+}
+
+.modalTitle {
+  font-family: "SF Pro Display Bold";
+  font-size: 24;
+  margin-top: 23px;
+  margin-bottom: 26px;
+}
+
+.uploadProfileImageContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-bottom: 30px;
+  color: #888888;
+  font-family: "SF Pro Display Regular";
+  gap: 7px;
+  font-size: 14px;
+}
+
+.createAccountForm {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  width: 100%;
+}
+
+.createAccountFormInput {
+  border-radius: 2px;
+  font-size: 14px;
+  font-family: "SF Pro Display Regular";
+  padding: 13px 20px;
+  color: #888888;
+}
+
+.createAccountFormInput::placeholder {
+  color: #888888;
+  font-size: 14px;
+  font-family: "SF Pro Display Regular";
+}
+
+.createAccountButton {
+  height: 42px;
+  width: 100%;
+  max-width: 180px;
+  border-radius: 2px;
+}
+
+.createAccountCheckBox {
+  color: #888888;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+.createAccountLink {
+  color: #9f4ae8;
+  text-decoration: none;
+}
+
+.createAccountLink:hover {
+  color: #000;
+}
+
+.createAccountButton {
+  margin-top: 47px;
+  display: block;
+}
+
+.createAccountButton_rtl {
+  margin-right: auto;
+}
+
+.createAccountButton_ltr {
+  margin-left: auto;
+}
+
+.closeButton {
+  all: unset;
+  background-color: #e8eaec;
+  width: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "SF Pro Display Medium";
+  color: #888888;
+  font-size: 12px;
+  padding: 5px 6px;
+  border-radius: 2px;
+  gap: 6px;
+  height: 24px;
+  box-sizing: border-box;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+
+@media screen and (min-width: 576px) {
+  .modalContent {
+    padding: 50px 30px 30px 30px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .closeButton {
+    right: 0;
+    top: -30px;
+  }
+  .customDialog {
+    max-width: 660px !important;
+    width: 100% !important;
+  }
+}

@@ -143,8 +143,9 @@
   "return": "вернуться на веб-сайт",
   "reset": "сброс",
   "enter_token": " Введите имя или адрес токена и нажмите «Сканировать».",
-  "sponsered": "спонсируемый",
+  "sponsored": "спонсируемый",
   "invest": "Начните инвестировать в Develocity прямо сейчас.",
   "welcoming_notification": "The Content shared on this website is for technical purposes only and, thus, should not be considered financial advice. Trading/Investing is risky, Cryptocurrencies are risky. You alone assume the sole responsibility of evaluating the merits and risks associated with using any information or other Content on the Site before making any decisions based on such information or other Content",
-  "tokens": "Токены"
+  "tokens": "Токены",
+  "supports": "supports"
 }

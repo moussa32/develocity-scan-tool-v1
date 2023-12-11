@@ -1,0 +1,41 @@
+.pageContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 70vh;
+}
+
+.selectNetworkContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.selectNetworkButton {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  font-size: 18px;
+  border-radius: 10px;
+  color: #333333;
+  font-family: "SF Pro Display Medium";
+  text-decoration: none;
+  align-items: center;
+  justify-content: center;
+  width: 250px;
+  height: 250px;
+  box-shadow: 0 0 17px 5px rgb(221 221 221 / 31%);
+  transition: all 0.3s;
+}
+
+.selectNetworkIcon {
+  width: 48px;
+  height: 48px;
+}
+
+.selectNetworkButton:hover {
+  background-color: #9f4ae8;
+  color: #fff;
+}

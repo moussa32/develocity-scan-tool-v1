@@ -148,3 +148,33 @@
 .tokenValue h3 {
   font-size: 14px;
 }
+
+.token_network_wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #e8eaec;
+  border-radius: 2px;
+  padding: 4px 12px;
+  gap: 5px;
+  margin: 0 5px;
+}
+
+.active_token_network_wrapper {
+  background-color: #9e4ae82f;
+}
+
+.token_network_logo {
+  width: 16px;
+  height: 16px;
+}
+
+.token_network {
+  font-size: 12px;
+  font-family: "SF Pro Display Regular";
+  color: #888888;
+}
+
+.active_token_network_wrapper .token_network {
+  color: #9f4ae8;
+}

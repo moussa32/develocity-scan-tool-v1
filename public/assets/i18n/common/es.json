@@ -136,8 +136,9 @@
   "return": "Volver a la página web",
   "reset": "Reiniciar",
   "enter_token": "Introduzca el nombre o la dirección del token y luego haga clic en escanear",
-  "sponsered": "Patrocinado",
+  "sponsored": "Patrocinado",
   "invest": "Comience a invertir en Develocity ahora.",
   "welcoming_notification": "The Content shared on this website is for technical purposes only and, thus, should not be considered financial advice. Trading/Investing is risky, Cryptocurrencies are risky. You alone assume the sole responsibility of evaluating the merits and risks associated with using any information or other Content on the Site before making any decisions based on such information or other Content",
-  "tokens": "Tokens"
+  "tokens": "Tokens",
+  "supports": "supports"
 }

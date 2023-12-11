@@ -116,8 +116,9 @@
   "return": "返回网站",
   "reset": "重置",
   "enter_token": "输入令牌名称或地址，然后单击扫描",
-  "sponsered": "赞助",
+  "sponsored": "赞助",
   "invest": "开始投资比特币私人只有10$",
   "welcoming_notification": "Bu web sitesinde paylaşılan içerik sadece teknik amaçlıdır, bu nedenle finansal tavsiye olarak değerlendirilmemelidir. Ticaret / yatırım risklidir, kripto para birimleri de  risklidir. Bu tür bilgilere veya başka herhangi bir içeriğe dayalı herhangi bir karar vermeden önce sitedeki herhangi bir bilginin veya diğer içeriğin kullanımıyla ilişkili avantaj ve risklerin değerlendirilmesinden yalnızca siz sorumlusunuz",
-  "tokens": "代币"
+  "tokens": "代币",
+  "supports": "supports"
 }

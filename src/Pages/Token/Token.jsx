@@ -11,128 +11,83 @@ import WalletsSection from "../../components/Token/WalletsSection/WalletsSection
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { fetchTokenOwner } from "../../store/tokenOwnerSlice";
-import { fetchWallet } from "../../store/topWalletSlice";
+import { fetchTopTenWallets } from "../../store/contractTopTenWalletsSlice";
 import TokenOwner from "../../components/Token/TokenOwner/TokenOwner";
-import LiquidtySection from "../../components/Token/LiquidtySection/LiquidtySection";
+import LiquiditySection from "../../components/Token/LiquiditySection/LiquiditySection";
 import { Trading } from "../../components/Token/Trading/Trading";
 import { Slippage } from "../../components/Token/Slippage/Slippage";
 import { LiquidityList } from "../../components/Token/LiquidityListGroup/LiquidityList";
 import { useParams } from "react-router-dom";
-import { AdevertiseTokenOne } from "../../components/Token/Advertise/AdevertiseTokenOne";
-import { AdevertiseTokenTwo } from "../../components/Token/Advertise/AdevertiseTokenTwo";
-import { AdevertiseTokenThree } from "../../components/Token/Advertise/AdevertiseTokenThree";
-import LockedSection from "../../components/Token/LockedSection/LockedSection";
+// import { AdevertiseTokenOne } from "../../components/Token/Advertise/AdevertiseTokenOne";
+// import { AdevertiseTokenTwo } from "../../components/Token/Advertise/AdevertiseTokenTwo";
+// import { AdevertiseTokenThree } from "../../components/Token/Advertise/AdevertiseTokenThree";
+// import LockedSection from "../../components/Token/LockedSection/LockedSection";
 import LockedTokens from "../../components/Token/LockedTokens/LockedTokens";
-import { fetchBSCTrasaction } from "../../store/bSCTrasactionSlice";
-import { fetchlockedLiquidity } from "../../store/FetchlockedLiquidity";
+import { fetchTransaction } from "../../store/transactionSlice";
+import { fetchContractLockedLiquidity } from "../../store/contractlockedLiquidity";
 import CopyRight from "../../components/Home/CopyRight/CopyRight";
 import { useTranslation } from "react-i18next";
 import { TableLoader } from "../../components/common/TableLoader";
-import { socket } from "../../config/socket";
 import { useNavigate } from "react-router-dom";
 import { fetchSearchParams } from "../../store/FetchSearchData";
 import UseAdvertisment from "../../hooks/UseAdvertisment";
 import styles from "./Token.module.css";
-import { fetchBSCResult } from "../../store/FetchBSCData";
-import { fetchTokenInfoResult } from "../../store/FetchTokenInfo";
-import { fetchBuySellBSCResult } from "../../store/FetchBuySellBSC";
-import { fetchBscLiquidityScan } from "../../store/bscLiquidityScanSlice";
+import { fetchContractAnalysis } from "../../store/contractAnalysisSlice";
+import { fetchContractInfoDetails } from "../../store/contractInfoDetailsSlice";
+import { fetchContractTax } from "../../store/contractTaxSlice";
+import { fetchLiquidityScan } from "../../store/liquidityScanSlice";
 import { ErrorBoundary } from "react-error-boundary";
 import ErrorWrapper from "../../components/common/ErrorWrapper";
 import ErrorPart from "../../components/common/ErrorPart";
 
 const Token = () => {
   const dispatch = useDispatch();
-  const { contractAddress } = useParams();
-  // calling advertisment
+  const { contractAddress, network } = useParams();
   let { getAdvertismentData, advertisment_Status, advertisment_code } = UseAdvertisment("Report");
-  // const ipAddress = useSelector(state => state.GetIPAddress.data);
   const navigate = useNavigate();
 
   const tokenOwnerLoading = useSelector(state => state.tokenOwner.loading);
   // const tokenList_isLoading = useSelector(state => state.tokenList.loading);
-  const bscTransaction_isLoading = useSelector(state => state.bSCTrasaction.loading);
-  const tokeninfodata = useSelector(state => state.Gettokeninfodata?.data?.result);
-  const bSCTrasaction = useSelector(state => state.bSCTrasaction.bSCTrasaction);
-  const statusBSCapi = useSelector(state => state.GetBuySellBSCdata.status);
-  const statusSlippage = useSelector(state => state.GetBuySellBSCdata.status);
+  const transactionIsLoading = useSelector(state => state.transaction.loading);
+  const tokeninfodata = useSelector(state => state.contractInfoDetails?.data?.result);
+  const transaction = useSelector(state => state.transaction.transaction);
+  const contractTax = useSelector(state => state.contractTax?.data);
+  const contractTaxStatus = useSelector(state => state.contractTax.status);
   const search_params = useSelector(state => state.Search?.statusParams);
   const tokenOwnerData = useSelector(state => state.tokenOwner);
   const { data: lockedLiquiditydata, status: lockedLiquidity_status } = useSelector(state => {
     return {
-      data: state.GetlockedLiquiditydata?.data,
-      status: state.GetlockedLiquiditydata?.status,
+      data: state.lockedLiquidity?.data,
+      status: state.lockedLiquidity?.status,
     };
   });
-  const { bscLiquidity: bscLiquidityScan, loading: bscLiquidity_isLoading } = useSelector(state => {
+  const { liquidity: liquidityScan, loading: liquidity_isLoading } = useSelector(state => {
     return {
-      bscLiquidity: state.bscLiquidityScan.bscLiquidity,
-      loading: state.bscLiquidityScan.loading,
+      liquidity: state.liquidityScan.liquidity,
+      loading: state.liquidityScan.loading,
     };
   });
   const { t } = useTranslation(["token"]);
 
   // useEffect(() => {
-  //     let timer = setTimeout(() => {
-  //         if (search_params?.responseCode !==200) {
-  //             navigate('/404')
-  //             }
-  //     }, 2000);
-
-  //     return () => {
-  //         clearTimeout(timer);
-  //       };
-  //   }, [navigate, search_params]);
-
-  useEffect(() => {
-    if (search_params?.responseCode === 400) {
-      navigate("/404");
-    } else {
-      return;
-    }
-  }, [navigate, search_params]);
-
-  // useEffect(() => {
-  //     if (search_params === 'loading' || search_params === null) {
-  //         return
-  //     }
-  //     else if (search_params?.responseCode === 400) {
-  //         navigate('/404')
-  //     }
+  //   if (search_params?.responseCode === 400) {
+  //     navigate("/404");
+  //   } else {
+  //     return;
+  //   }
   // }, [navigate, search_params]);
-
-  // useEffect(() => {
-  //     if (!/[^0x].{39}$/.test(contractAddress)) {
-  //     navigate('/404')
-  //     console.log("pp")
-  //     }
-  //   }, [navigate, contractAddress]);
-
-  // tokeninfodata?.contractInfo?.name
-  // tokeninfodata?.contractInfo?.logo
-  useEffect(() => {
-    socket.emit("currentLocation", {
-      contractAddress: contractAddress,
-      page: "token",
-      name: tokeninfodata?.contractInfo?.name,
-      logo: tokeninfodata?.contractInfo?.logo,
-    });
-    // return () => {
-    //     socket.emit('leaveTokenPage', { contractAddress: contractAddress });
-    // }
-  }, [contractAddress, tokeninfodata?.contractInfo?.logo, tokeninfodata?.contractInfo?.name]);
 
   useEffect(() => {
     dispatch(fetchSearchParams(contractAddress));
     dispatch(fetchTokenOwner(contractAddress));
-    dispatch(fetchWallet(contractAddress));
-    dispatch(fetchBSCTrasaction(contractAddress));
-    dispatch(fetchBSCResult(contractAddress));
-    dispatch(fetchlockedLiquidity(contractAddress));
-    dispatch(fetchTokenInfoResult(contractAddress));
-    dispatch(fetchBuySellBSCResult(contractAddress));
-    dispatch(fetchBscLiquidityScan(contractAddress));
-  }, [dispatch, contractAddress]);
+    dispatch(fetchTopTenWallets(contractAddress));
+    dispatch(fetchTransaction({ contractAddress, network }));
+    dispatch(fetchContractAnalysis({ contractAddress, network }));
+    dispatch(fetchContractLockedLiquidity(contractAddress));
+    dispatch(fetchContractInfoDetails({ contractAddress, network }));
+    dispatch(fetchContractTax({ contractAddress, network }));
+    dispatch(fetchLiquidityScan({ contractAddress, network }));
+  }, [dispatch, contractAddress, network]);
 
   return (
     <div className="bg-white">
@@ -156,27 +111,28 @@ const Token = () => {
           <BreadCrumbBar />
         </div>
 
-        <div className="row mt-5">
+        <div className={`row ${styles.reportHeader}`}>
           <div className="col-lg-3 col-sm-12">
             <TrustScore />
           </div>
-          <div className="col-12 col-lg-9">
-            <div className="row">
-              <div className="col-12 col-md-4">
+          <div className="col-12 col-lg-6">
+            <div className={`row ${styles.reportHeaderCenter}`}>
+              <div className="col-12 col-md-6">
                 <ContractAnalysisCard />
               </div>
-              <div className="col-12 col-md-4">
+              <div className="col-12 col-md-6">
                 <HoneypotCard />
                 <RugpullCard />
               </div>
-              <div className="col-12 col-md-4 ">
-                <div className={`col-12 mt-5 mt-md-0 mx-auto ml-6 margin-right justify-content-center ${styles.marginRight}`}>
-                  <a href="https://develocity.finance">
-                    <img src="../250x250.gif" className={`${styles.marginRight } `} />
-                  </a>
-                </div>
+              <div className="col-12">
+                <div style={{ height: 118, marginTop: "auto" }}>{/* Locked Tokens table */}</div>
               </div>
             </div>
+          </div>
+          <div className="col-lg-3 col-sm-12">
+            <a href="https://develocity.finance">
+              <img src="../250x250.gif" className={`${styles.marginRight}`} />
+            </a>
           </div>
         </div>
 
@@ -194,7 +150,8 @@ const Token = () => {
             )}
             <div className={`mt-3 col-12 d-flex justify-content-center align-items-center`}>
               <a href="https://develocity.finance">
-                <img src="../930x180.gif" width={350} className={`${styles.secondAd}`}/>
+                <img src="../930x180.gif" width={350} className={`${styles.secondAd}`} />
+                <img src="../930x180.gif" width={350} className={`${styles.secondAd}`} />
               </a>
             </div>
           </div>
@@ -248,21 +205,20 @@ const Token = () => {
               <LiquidityList />
             </div>
             <div className="d-md-flex justify-content-between align-items-center" style={{ gap: "20px" }}>
-              <Slippage />
+              <Slippage tradingSlippage={contractTax} status={contractTaxStatus} />
               <div className={` mx-auto  justify-content-center ${styles.marginRight}`}>
                 <a href="https://develocity.finance">
-                  <img src="../250x250.gif" className={` mt-3  ${styles.marginRight}`}/>
+                  <img src="../250x250.gif" className={` mt-3  ${styles.marginRight}`} />
                 </a>
               </div>
-
             </div>
           </div>
           <div className="col-12 col-lg-6">
-            {bscLiquidity_isLoading === "success" || bscTransaction_isLoading === "success" ? (
+            {liquidity_isLoading === "success" || transactionIsLoading === "success" ? (
               <div className="wallets_table wallet_table_td_width">
-                <LiquidtySection LiquidtyData={bscLiquidityScan} bSCTrasaction={bSCTrasaction} />
+                <LiquiditySection LiquidtyData={liquidityScan} transaction={transaction} />
               </div>
-            ) : bscLiquidity_isLoading || bscTransaction_isLoading === true ? (
+            ) : liquidity_isLoading || transactionIsLoading === true ? (
               <TableLoader />
             ) : null}
           </div>

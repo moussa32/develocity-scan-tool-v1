@@ -5,26 +5,30 @@ import { Placeholder } from "../../common/Placeholder/Placeholder";
 import ErrorPart from "../../common/ErrorPart";
 
 export function RugpullCard() {
-  const bscdata_status = useSelector(state => state.GetBSCdata.status);
+  const bscdata_status = useSelector(state => state.contractAnalysis.status);
   const LPtokenBalance_percentage = useSelector(state => state.tokenOwner.tokenOwner);
   const { t } = useTranslation(["token"]);
 
-  let percentage = Math.round(LPtokenBalance_percentage?.ownerInfo?.pairsInfo[0]?.LPtokenBalance_percentage + LPtokenBalance_percentage?.ownerInfo?.pairsInfo[1]?.LPtokenBalance_percentage + LPtokenBalance_percentage?.ownerInfo?.pairsInfo[2]?.LPtokenBalance_percentage);
-if(isNaN(percentage)){
-  percentage = Math.round(LPtokenBalance_percentage?.ownerInfo?.LPtokenBalance_percentage)
-}
+  let percentage = Math.round(
+    LPtokenBalance_percentage?.ownerInfo?.pairsInfo[0]?.LPtokenBalance_percentage +
+      LPtokenBalance_percentage?.ownerInfo?.pairsInfo[1]?.LPtokenBalance_percentage +
+      LPtokenBalance_percentage?.ownerInfo?.pairsInfo[2]?.LPtokenBalance_percentage
+  );
+  if (isNaN(percentage)) {
+    percentage = Math.round(LPtokenBalance_percentage?.ownerInfo?.LPtokenBalance_percentage);
+  }
   if (bscdata_status === "failed") return <ErrorPart message="Failed to load data from server" />;
 
   return (
     <div className={styles.cardContainer}>
       <h2 className={styles.cardHeader}>{t("token:rugpull")}</h2>
+
       {bscdata_status === "loading" && (
         <div className={styles.loader}>
-          <div className={styles.loaderCard}>
-            <Placeholder styling={{ width: "100%", height: "60px" }} />
-          </div>
+          <Placeholder styling={{ width: "100%", height: "104px" }} />
         </div>
       )}
+
       {bscdata_status === "success" && !isNaN(percentage) && (
         <>
           {percentage <= 20 ? (

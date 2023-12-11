@@ -3,13 +3,17 @@
   padding: 44px 15px 59px 15px;
 }
 
+.reportHeader {
+  margin-top: 29px;
+}
+
 .searchContainer {
   margin-left: auto;
   width: 100%;
 }
 
- .marginRight{
-  width: 250px!important;
+.marginRight {
+  width: 250px !important;
 }
 
 @media screen and (min-width: 576px) {
@@ -17,14 +21,20 @@
     padding-left: 44px;
     padding-right: 44px;
   }
-  .secondAd{
-   margin: 30px!important;
+  .secondAd {
+    margin: 30px !important;
   }
 }
 
 @media screen and (max-width: 992px) {
   .LeftBarToken {
     margin-top: 1.5rem;
+  }
+  .reportHeader {
+    gap: 25px;
+  }
+  .reportHeaderCenter {
+    row-gap: 25px;
   }
 }
 
@@ -35,7 +45,16 @@
   .walletsContainer {
     margin-top: 110px;
   }
-  .secondAd{
+  .secondAd {
     width: 500px;
+  }
+  .reportHeader {
+    height: 434px;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .reportHeaderCenter {
+    row-gap: 40px;
   }
 }

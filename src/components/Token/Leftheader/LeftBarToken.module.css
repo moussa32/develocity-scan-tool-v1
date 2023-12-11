@@ -107,6 +107,27 @@
 .copiedaddress {
   font-size: 14px;
 }
+
+.network {
+  display: flex;
+  align-items: center;
+  background-color: #e8eaec;
+  border-radius: 2px;
+  padding: 4px 6px;
+  gap: 4px;
+}
+
+.networkLogo {
+  width: 16px;
+  height: 16px;
+}
+
+.networkName {
+  font-size: 12px;
+  font-family: "SF Pro Display Regular";
+  color: #888888;
+}
+
 @media only screen and (max-width: 480px) {
   .percent > div {
     width: 100%;

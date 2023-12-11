@@ -25,6 +25,7 @@
   "ownership": "Ownership",
   "tokens": "Tokens",
   "token_owner": "Token Owner",
+  "locked_tokens": "Locked Tokens",
   "liquidity_transactions": "Liquidity Transactions",
   "transactions": "Transactions",
   "amount": "Amount",
@@ -98,8 +99,8 @@
     "liquidityInfo": "Liquidity is the main pool for the token and token owner can add or remove tokens from it."
   },
   "trustScoreTitle": {
-    "notBad":  "Contract Reliability: Good",
-    "runAway": "Contract Reliability: Low" ,
+    "notBad": "Contract Reliability: Good",
+    "runAway": "Contract Reliability: Low",
     "thinkTwice": "Contract Reliability: Moderate"
   },
   "tokenType": {
@@ -111,4 +112,3 @@
   "token_does_not_have_owner": "This token doesn't have owner address",
   "get_token_info_error": "Error Happened we couldn't get token info"
 }
-

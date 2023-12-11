@@ -4,32 +4,32 @@ import LiquidtyTable from "../LiquidtyTable/LiquidtyTable";
 import RemovedLiquidity from "../LiquidtyTable/RemovedLiquidity";
 import { useTranslation } from "react-i18next";
 
-const LiquidtySection = ({ LiquidtyData, bSCTrasaction }) => {
+const LiquiditySection = ({ liquidityData, transaction }) => {
   const { t } = useTranslation(["token"]);
   let Active =
-    bSCTrasaction?.tokenTransaction?.length > 0
+    transaction?.tokenTransaction?.length > 0
       ? "LiquidtyTransactions"
-      : LiquidtyData?.addLiquidityTransaction?.length > 0
+      : liquidityData?.addLiquidityTransaction?.length > 0
       ? "AddedLiquidity"
       : "RemovedLiquidity";
 
   return (
     <>
       <Tabs defaultActiveKey={Active} id="uncontrolled-tab-example">
-        {bSCTrasaction?.transactions?.length > 0 && (
+        {transaction?.transactions?.length > 0 && (
           <Tab eventKey="LiquidtyTransactions" title={t("token:liquidity_transactions")}>
-            <LiquidtyTable bSCTrasaction={bSCTrasaction} />
+            <LiquidtyTable transaction={transaction} />
           </Tab>
         )}
 
-        {LiquidtyData?.addLiquidityTransaction?.length > 0 && (
+        {liquidityData?.addLiquidityTransaction?.length > 0 && (
           <Tab eventKey="AddedLiquidity" title={t("token:added_liquidity")}>
-            <AddedLiquidity LiquidtyData={LiquidtyData} />
+            <AddedLiquidity liquidtyData={liquidityData} />
           </Tab>
         )}
-        {LiquidtyData?.removeLiquidityTransaction?.length > 0 && (
+        {liquidityData?.removeLiquidityTransaction?.length > 0 && (
           <Tab eventKey="RemovedLiquidity" title={t("token:removed_liquidity")}>
-            <RemovedLiquidity LiquidtyData={LiquidtyData} />
+            <RemovedLiquidity liquidtyData={liquidityData} />
           </Tab>
         )}
       </Tabs>
@@ -37,4 +37,4 @@ const LiquidtySection = ({ LiquidtyData, bSCTrasaction }) => {
   );
 };
 
-export default LiquidtySection;
+export default LiquiditySection;

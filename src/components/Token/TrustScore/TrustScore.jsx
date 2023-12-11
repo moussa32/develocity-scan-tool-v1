@@ -76,10 +76,14 @@ const TrustScore = () => {
   };
 
   return (
-    <>
+    <div className={styles.trustScore}>
       {statusTrust === "success" && (
         <>
-          <div className={lang === "ar" ? styles.trustScoreBlock_rtl : styles.trustScoreBlock_ltr}>
+          <div
+            className={`${styles.trustScore} ${
+              lang === "ar" ? styles.trustScoreBlock_rtl : styles.trustScoreBlock_ltr
+            }`}
+          >
             <div>
               <span className={styles.blockTitle}>{t("token:trust_score")}</span>
 
@@ -106,7 +110,7 @@ const TrustScore = () => {
         <>
           <div className={lang === "ar" ? styles.trustScoreBlock_rtl : styles.trustScoreBlock_ltr}>
             <div className={styles.trustScoreBlock}>
-              <span className={styles.blockTitle}>trust score</span>
+              <span className={styles.blockTitle}>{t("token:trust_score")}</span>
 
               <div className={styles.chart} id="chart">
                 {/* <Placeholder styling={ {width:'160px',height:'150px', borderRadius:'50%'}}/> */}
@@ -135,7 +139,7 @@ const TrustScore = () => {
       )}
 
       {statusTrust === "failed" && ""}
-    </>
+    </div>
   );
 };
 
