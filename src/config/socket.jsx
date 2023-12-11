@@ -1,6 +1,6 @@
 import { io } from "socket.io-client";
 
-export const socket = io("https://direful-current-production.up.railway.app/", {
+export const socket = io("http://api.develocity.finance/", {
   extraHeaders: {
     ["my-auth"]: "abcd",
   },
